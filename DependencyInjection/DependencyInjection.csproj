@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>CodeCompendium.DependencyInjection</AssemblyName>
+    <RootNamespace>CodeCompendium.DependencyInjection</RootNamespace>
+    <Authors>Robert Thomas</Authors>
+    <Company>The Whimsy and Wizardry Limited Company</Company>
+    <Copyright>Copyright © The Whimsy and Wizardry Limited Company 2020</Copyright>
+    <Description>An extremely lightweight and simple dependency injection system.</Description>
+    <PackageIcon>code-compendium-icon-128.png</PackageIcon>
+    <PackageIconUrl />
+    <PackageProjectUrl>https://codecompendium.dev/projects</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>dependency injection</PackageTags>
+    <PackageReleaseNotes>Initial creation of simple dependency injectory with base feature set.</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\code-compendium-icon-128.png" />
+    <None Remove="Resources\code-compendium-icon.ico" />
+    <None Include="Resources\code-compendium-icon-128.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\code-compendium-icon-128.png" />
+  </ItemGroup>
+
+</Project>
