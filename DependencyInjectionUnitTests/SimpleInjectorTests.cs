@@ -2,7 +2,7 @@ using System;
 using CodeCompendium.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace DependencyInjectionUnitTests
+namespace CodeCompendium.DependencyInjectionUnitTests
 {
    [TestClass]
    public class SimpleInjectorTests
