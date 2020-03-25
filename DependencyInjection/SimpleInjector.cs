@@ -39,6 +39,11 @@ namespace CodeCompendium.DependencyInjection
       /// </summary>
       public SimpleInjector(SimpleInjector simpleInjector) : this()
       {
+         if (simpleInjector == null)
+         {
+            throw new ArgumentNullException(nameof(simpleInjector));
+         }
+
          foreach (KeyValuePair<Type, object> pair in simpleInjector._singleInstanceMap)
          {
             _singleInstanceMap[pair.Key] = pair.Value;
@@ -47,6 +52,11 @@ namespace CodeCompendium.DependencyInjection
          foreach (KeyValuePair<Type, Type> pair in simpleInjector._implementationMap)
          {
             _implementationMap[pair.Key] = pair.Value;
+         }
+
+         foreach (Type type in simpleInjector._controlledLifetimeTypes)
+         {
+            _controlledLifetimeTypes.Add(type);
          }
       }
 
@@ -62,6 +72,17 @@ namespace CodeCompendium.DependencyInjection
          where T : class
       {
          _singleInstanceMap[typeof(T)] = obj;
+      }
+
+      /// <summary>
+      /// Registers a type as a single instance.
+      /// The first time <see cref="Resolve{T}"/> is called it will create an instance of this type.
+      /// Future calls to <see cref="Resolve{T}"/> for its type will return the previously created instance.
+      /// </summary>
+      public void RegisterSingleInstance<T>()
+         where T : class
+      {
+         RegisterSingleInstance(typeof(T));
       }
 
       /// <summary>
@@ -106,14 +127,9 @@ namespace CodeCompendium.DependencyInjection
 
       private object Resolve(Type type)
       {
-         if (type == null)
-         {
-            throw new ArgumentNullException(nameof(type));
-         }
-
          object obj = null;
 
-         if (type == this.GetType())
+         if (type == typeof(SimpleInjector))
          {
             obj = this;
          }
@@ -154,7 +170,15 @@ namespace CodeCompendium.DependencyInjection
 
                   foreach (ParameterInfo parameter in constructor.GetParameters())
                   {
-                     parameters.Add(Resolve(parameter.ParameterType));
+                     if (parameter.HasDefaultValue && 
+                        (parameter.ParameterType.IsValueType || parameter.DefaultValue != null))
+                     {
+                        parameters.Add(parameter.DefaultValue);
+                     }
+                     else
+                     {
+                        parameters.Add(Resolve(parameter.ParameterType));
+                     }
                   }
 
                   obj = Activator.CreateInstance(type, parameters.ToArray());
