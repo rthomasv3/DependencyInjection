@@ -14,6 +14,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>dependency injection</PackageTags>
     <PackageReleaseNotes>Initial creation of simple dependency injector with base feature set.</PackageReleaseNotes>
+    <RepositoryUrl>https://github.com/rthomasv3/DependencyInjection</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
