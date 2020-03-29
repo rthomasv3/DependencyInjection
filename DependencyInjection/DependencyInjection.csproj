@@ -13,7 +13,7 @@
     <PackageProjectUrl>https://codecompendium.dev/projects</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>dependency injection</PackageTags>
-    <PackageReleaseNotes>Initial creation of simple dependency injectory with base feature set.</PackageReleaseNotes>
+    <PackageReleaseNotes>Initial creation of simple dependency injector with base feature set.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
