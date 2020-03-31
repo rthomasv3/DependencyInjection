@@ -1,3 +1,5 @@
+![Code Compendium Logo](https://codecompendium.dev/code-compendium-icon-96.png)
+
 # DependencyInjection
 An extremely lightweight and simple dependency injection system.
 
